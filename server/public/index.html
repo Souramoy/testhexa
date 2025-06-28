@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Easy Server</title>
+		<style>
+			body {
+				font-family: 'Arial', sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #212429;
+				color: #f5f5f5;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			/* Animated background elements */
+			.bg-circle {
+				position: absolute;
+				border-radius: 50%;
+				background: rgba(57, 224, 121, 0.1);
+				animation: float 15s infinite linear;
+				z-index: -1;
+			}
+			
+			@keyframes float {
+				0% { transform: translateY(0) rotate(0deg); }
+				50% { transform: translateY(-20vh) rotate(180deg); }
+				100% { transform: translateY(0) rotate(360deg); }
+			}
+			
+			.container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				position: relative;
+				z-index: 1;
+				backdrop-filter: blur(2px);
+			}
+			
+			.content {
+				text-align: center;
+				padding: 2rem;
+				background: rgba(33, 36, 41, 0.8);
+				border-radius: 16px;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+				border: 1px solid rgba(57, 224, 121, 0.2);
+				max-width: 600px;
+				transition: transform 0.3s ease;
+			}
+			
+			.content:hover {
+				transform: translateY(-5px);
+			}
+			
+			h1 {
+				color: #39e079;
+				margin-bottom: 1.5rem;
+				font-size: 2.5rem;
+				text-shadow: 0 0 10px rgba(57, 224, 121, 0.3);
+			}
+			
+			p {
+				color: #f5f5f5;
+				margin-bottom: 1.5rem;
+				font-size: 1.1rem;
+				line-height: 1.6;
+			}
+			
+			.time {
+				color: #aaa;
+				font-size: 1rem;
+				margin-top: 2rem;
+				display: inline-block;
+				padding: 0.5rem 1rem;
+				background: rgba(57, 224, 121, 0.1);
+				border-radius: 50px;
+				border: 1px solid rgba(57, 224, 121, 0.2);
+			}
+			
+			/* Glowing effect */
+			.glow {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				background: radial-gradient(circle, rgba(57, 224, 121, 0.3) 0%, rgba(57, 224, 121, 0) 70%);
+				filter: blur(10px);
+				animation: pulse 4s infinite alternate;
+				z-index: -1;
+			}
+			
+			@keyframes pulse {
+				0% { opacity: 0.3; transform: scale(0.8); }
+				100% { opacity: 0.6; transform: scale(1.2); }
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Background animation elements -->
+		<div class="bg-circle" style="width: 300px; height: 300px; top: -100px; left: -100px; animation-delay: 0s;"></div>
+		<div class="bg-circle" style="width: 200px; height: 200px; bottom: -50px; right: -50px; animation-delay: 2s;"></div>
+		<div class="bg-circle" style="width: 150px; height: 150px; top: 30%; right: 20%; animation-delay: 4s;"></div>
+		<div class="glow" style="top: 20%; left: 15%;"></div>
+		<div class="glow" style="bottom: 15%; right: 20%; animation-delay: 2s;"></div>
+		
+		<div class="container">
+			<div class="content">
+				<h1>🚀 API is running smoothly! 🌟</h1>
+				<p>
+					Welcome to Easy Server. Everything is set up and ready
+					to go!
+				</p>
+				<p class="time">Current Time: <span id="currentTime"></span></p>
+			</div>
+		</div>
+		<script>
+			document.getElementById("currentTime").innerText =
+				new Date().toLocaleTimeString();
+				
+			// Update time every second
+			setInterval(function() {
+				document.getElementById("currentTime").innerText =
+					new Date().toLocaleTimeString();
+			}, 1000);
+			
+			// Create additional floating elements
+			document.addEventListener('DOMContentLoaded', function() {
+				for (let i = 0; i < 5; i++) {
+					const circle = document.createElement('div');
+					circle.className = 'bg-circle';
+					const size = Math.random() * 100 + 50;
+					const posX = Math.random() * 100;
+					const posY = Math.random() * 100;
+					const delay = Math.random() * 5;
+					
+					circle.style.width = `${size}px`;
+					circle.style.height = `${size}px`;
+					circle.style.left = `${posX}%`;
+					circle.style.top = `${posY}%`;
+					circle.style.animationDelay = `${delay}s`;
+					circle.style.opacity = Math.random() * 0.2 + 0.1;
+					
+					document.body.appendChild(circle);
+				}
+			});
+		</script>
+	</body>
+</html>
